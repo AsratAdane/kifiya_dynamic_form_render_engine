@@ -54,7 +54,7 @@ dependencies:
   flutter_riverpod: ^3.0.0
   dynamic_form_renderer:
     git:
-      url: https://github.com/yourusername/dynamic_form_renderer.git
+      url: https://github.com/AsratAdane/dynamic_form_renderer.git
 ```
 
 Then run:
@@ -230,4 +230,4 @@ If you want to improve the logic, field widgets, or add new types — feel free 
 
 ## 📜 License
 
-MIT License © 2025 [Your Name](https://github.com/AsratAdane)
+MIT License © 2025 [Asrat Adane](https://github.com/AsratAdane)
