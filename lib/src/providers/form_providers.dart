@@ -15,10 +15,5 @@ final visibleFieldsProvider = Provider.family<List<FieldSchema>, FormSchema>(
     return schema.fields.where((field) => controller.isFieldVisible(field, formState)).toList();
   },
 );
-
-final formErrorsProvider = Provider.family<Map<String, String>, FormSchema>(
-      (ref, schema) {
-    final controller = ref.read(formControllerProvider.notifier);
-    return controller.validate(schema);
-  },
-);
+// Reactive map of fieldId -> error message
+final formErrorsProvider = StateProvider<Map<String, String>>((ref) => {});
