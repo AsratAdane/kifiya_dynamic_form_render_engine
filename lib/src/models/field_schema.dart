@@ -6,9 +6,15 @@ part 'field_schema.g.dart';
 
 enum FieldType {
   text,
-  radio,
   dropdown,
+  radio,
+  date,
+  checkbox,
+  fileUpload,
+  signature,
 }
+
+
 
 @freezed
 abstract class FieldSchema with _$FieldSchema {
@@ -19,7 +25,9 @@ abstract class FieldSchema with _$FieldSchema {
     @Default(false) bool required,
     List<String>? options,
     String? dependsOn,
-    String? visibleWhenEquals,
+    dynamic visibleWhenEquals,
+    String? dateFormat, // For date picker display
+    dynamic defaultValue,
   }) = _FieldSchema;
 
   factory FieldSchema.fromJson(Map<String, dynamic> json) =>

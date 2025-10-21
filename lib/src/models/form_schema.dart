@@ -8,6 +8,8 @@ abstract class FormSchema with _$FormSchema {
   const factory FormSchema({
     required String title,
     required List<FieldSchema> fields,
+    required String submitApiUrl,
+    required String nextFormApiUrl,
   }) = _FormSchema;
 
   factory FormSchema.fromJson(Map<String, dynamic> json) =>

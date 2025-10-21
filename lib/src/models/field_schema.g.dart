@@ -15,7 +15,9 @@ _FieldSchema _$FieldSchemaFromJson(Map<String, dynamic> json) => _FieldSchema(
       ?.map((e) => e as String)
       .toList(),
   dependsOn: json['dependsOn'] as String?,
-  visibleWhenEquals: json['visibleWhenEquals'] as String?,
+  visibleWhenEquals: json['visibleWhenEquals'],
+  dateFormat: json['dateFormat'] as String?,
+  defaultValue: json['defaultValue'],
 );
 
 Map<String, dynamic> _$FieldSchemaToJson(_FieldSchema instance) =>
@@ -27,10 +29,16 @@ Map<String, dynamic> _$FieldSchemaToJson(_FieldSchema instance) =>
       'options': instance.options,
       'dependsOn': instance.dependsOn,
       'visibleWhenEquals': instance.visibleWhenEquals,
+      'dateFormat': instance.dateFormat,
+      'defaultValue': instance.defaultValue,
     };
 
 const _$FieldTypeEnumMap = {
   FieldType.text: 'text',
-  FieldType.radio: 'radio',
   FieldType.dropdown: 'dropdown',
+  FieldType.radio: 'radio',
+  FieldType.date: 'date',
+  FieldType.checkbox: 'checkbox',
+  FieldType.fileUpload: 'fileUpload',
+  FieldType.signature: 'signature',
 };

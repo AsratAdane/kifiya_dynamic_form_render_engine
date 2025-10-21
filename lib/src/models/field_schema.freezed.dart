@@ -15,7 +15,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FieldSchema {
 
- String get id; FieldType get type; String get label; bool get required; List<String>? get options; String? get dependsOn; String? get visibleWhenEquals;
+ String get id; FieldType get type; String get label; bool get required; List<String>? get options; String? get dependsOn; dynamic get visibleWhenEquals; String? get dateFormat;// For date picker display
+ dynamic get defaultValue;
 /// Create a copy of FieldSchema
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +29,16 @@ $FieldSchemaCopyWith<FieldSchema> get copyWith => _$FieldSchemaCopyWithImpl<Fiel
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FieldSchema&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.label, label) || other.label == label)&&(identical(other.required, required) || other.required == required)&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.dependsOn, dependsOn) || other.dependsOn == dependsOn)&&(identical(other.visibleWhenEquals, visibleWhenEquals) || other.visibleWhenEquals == visibleWhenEquals));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FieldSchema&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.label, label) || other.label == label)&&(identical(other.required, required) || other.required == required)&&const DeepCollectionEquality().equals(other.options, options)&&(identical(other.dependsOn, dependsOn) || other.dependsOn == dependsOn)&&const DeepCollectionEquality().equals(other.visibleWhenEquals, visibleWhenEquals)&&(identical(other.dateFormat, dateFormat) || other.dateFormat == dateFormat)&&const DeepCollectionEquality().equals(other.defaultValue, defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,type,label,required,const DeepCollectionEquality().hash(options),dependsOn,visibleWhenEquals);
+int get hashCode => Object.hash(runtimeType,id,type,label,required,const DeepCollectionEquality().hash(options),dependsOn,const DeepCollectionEquality().hash(visibleWhenEquals),dateFormat,const DeepCollectionEquality().hash(defaultValue));
 
 @override
 String toString() {
-  return 'FieldSchema(id: $id, type: $type, label: $label, required: $required, options: $options, dependsOn: $dependsOn, visibleWhenEquals: $visibleWhenEquals)';
+  return 'FieldSchema(id: $id, type: $type, label: $label, required: $required, options: $options, dependsOn: $dependsOn, visibleWhenEquals: $visibleWhenEquals, dateFormat: $dateFormat, defaultValue: $defaultValue)';
 }
 
 
@@ -48,7 +49,7 @@ abstract mixin class $FieldSchemaCopyWith<$Res>  {
   factory $FieldSchemaCopyWith(FieldSchema value, $Res Function(FieldSchema) _then) = _$FieldSchemaCopyWithImpl;
 @useResult
 $Res call({
- String id, FieldType type, String label, bool required, List<String>? options, String? dependsOn, String? visibleWhenEquals
+ String id, FieldType type, String label, bool required, List<String>? options, String? dependsOn, dynamic visibleWhenEquals, String? dateFormat, dynamic defaultValue
 });
 
 
@@ -65,7 +66,7 @@ class _$FieldSchemaCopyWithImpl<$Res>
 
 /// Create a copy of FieldSchema
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? label = null,Object? required = null,Object? options = freezed,Object? dependsOn = freezed,Object? visibleWhenEquals = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? type = null,Object? label = null,Object? required = null,Object? options = freezed,Object? dependsOn = freezed,Object? visibleWhenEquals = freezed,Object? dateFormat = freezed,Object? defaultValue = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -74,7 +75,9 @@ as String,required: null == required ? _self.required : required // ignore: cast
 as bool,options: freezed == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as List<String>?,dependsOn: freezed == dependsOn ? _self.dependsOn : dependsOn // ignore: cast_nullable_to_non_nullable
 as String?,visibleWhenEquals: freezed == visibleWhenEquals ? _self.visibleWhenEquals : visibleWhenEquals // ignore: cast_nullable_to_non_nullable
-as String?,
+as dynamic,dateFormat: freezed == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
+as String?,defaultValue: freezed == defaultValue ? _self.defaultValue : defaultValue // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 
@@ -159,10 +162,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  String? visibleWhenEquals)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  dynamic visibleWhenEquals,  String? dateFormat,  dynamic defaultValue)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FieldSchema() when $default != null:
-return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals);case _:
+return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals,_that.dateFormat,_that.defaultValue);case _:
   return orElse();
 
 }
@@ -180,10 +183,10 @@ return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  String? visibleWhenEquals)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  dynamic visibleWhenEquals,  String? dateFormat,  dynamic defaultValue)  $default,) {final _that = this;
 switch (_that) {
 case _FieldSchema():
-return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals);case _:
+return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals,_that.dateFormat,_that.defaultValue);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -200,10 +203,10 @@ return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_th
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  String? visibleWhenEquals)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  FieldType type,  String label,  bool required,  List<String>? options,  String? dependsOn,  dynamic visibleWhenEquals,  String? dateFormat,  dynamic defaultValue)?  $default,) {final _that = this;
 switch (_that) {
 case _FieldSchema() when $default != null:
-return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals);case _:
+return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_that.dependsOn,_that.visibleWhenEquals,_that.dateFormat,_that.defaultValue);case _:
   return null;
 
 }
@@ -215,7 +218,7 @@ return $default(_that.id,_that.type,_that.label,_that.required,_that.options,_th
 @JsonSerializable()
 
 class _FieldSchema implements FieldSchema {
-  const _FieldSchema({required this.id, required this.type, required this.label, this.required = false, final  List<String>? options, this.dependsOn, this.visibleWhenEquals}): _options = options;
+  const _FieldSchema({required this.id, required this.type, required this.label, this.required = false, final  List<String>? options, this.dependsOn, this.visibleWhenEquals, this.dateFormat, this.defaultValue}): _options = options;
   factory _FieldSchema.fromJson(Map<String, dynamic> json) => _$FieldSchemaFromJson(json);
 
 @override final  String id;
@@ -232,7 +235,10 @@ class _FieldSchema implements FieldSchema {
 }
 
 @override final  String? dependsOn;
-@override final  String? visibleWhenEquals;
+@override final  dynamic visibleWhenEquals;
+@override final  String? dateFormat;
+// For date picker display
+@override final  dynamic defaultValue;
 
 /// Create a copy of FieldSchema
 /// with the given fields replaced by the non-null parameter values.
@@ -247,16 +253,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FieldSchema&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.label, label) || other.label == label)&&(identical(other.required, required) || other.required == required)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.dependsOn, dependsOn) || other.dependsOn == dependsOn)&&(identical(other.visibleWhenEquals, visibleWhenEquals) || other.visibleWhenEquals == visibleWhenEquals));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FieldSchema&&(identical(other.id, id) || other.id == id)&&(identical(other.type, type) || other.type == type)&&(identical(other.label, label) || other.label == label)&&(identical(other.required, required) || other.required == required)&&const DeepCollectionEquality().equals(other._options, _options)&&(identical(other.dependsOn, dependsOn) || other.dependsOn == dependsOn)&&const DeepCollectionEquality().equals(other.visibleWhenEquals, visibleWhenEquals)&&(identical(other.dateFormat, dateFormat) || other.dateFormat == dateFormat)&&const DeepCollectionEquality().equals(other.defaultValue, defaultValue));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,type,label,required,const DeepCollectionEquality().hash(_options),dependsOn,visibleWhenEquals);
+int get hashCode => Object.hash(runtimeType,id,type,label,required,const DeepCollectionEquality().hash(_options),dependsOn,const DeepCollectionEquality().hash(visibleWhenEquals),dateFormat,const DeepCollectionEquality().hash(defaultValue));
 
 @override
 String toString() {
-  return 'FieldSchema(id: $id, type: $type, label: $label, required: $required, options: $options, dependsOn: $dependsOn, visibleWhenEquals: $visibleWhenEquals)';
+  return 'FieldSchema(id: $id, type: $type, label: $label, required: $required, options: $options, dependsOn: $dependsOn, visibleWhenEquals: $visibleWhenEquals, dateFormat: $dateFormat, defaultValue: $defaultValue)';
 }
 
 
@@ -267,7 +273,7 @@ abstract mixin class _$FieldSchemaCopyWith<$Res> implements $FieldSchemaCopyWith
   factory _$FieldSchemaCopyWith(_FieldSchema value, $Res Function(_FieldSchema) _then) = __$FieldSchemaCopyWithImpl;
 @override @useResult
 $Res call({
- String id, FieldType type, String label, bool required, List<String>? options, String? dependsOn, String? visibleWhenEquals
+ String id, FieldType type, String label, bool required, List<String>? options, String? dependsOn, dynamic visibleWhenEquals, String? dateFormat, dynamic defaultValue
 });
 
 
@@ -284,7 +290,7 @@ class __$FieldSchemaCopyWithImpl<$Res>
 
 /// Create a copy of FieldSchema
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = null,Object? label = null,Object? required = null,Object? options = freezed,Object? dependsOn = freezed,Object? visibleWhenEquals = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? type = null,Object? label = null,Object? required = null,Object? options = freezed,Object? dependsOn = freezed,Object? visibleWhenEquals = freezed,Object? dateFormat = freezed,Object? defaultValue = freezed,}) {
   return _then(_FieldSchema(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
@@ -293,7 +299,9 @@ as String,required: null == required ? _self.required : required // ignore: cast
 as bool,options: freezed == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
 as List<String>?,dependsOn: freezed == dependsOn ? _self.dependsOn : dependsOn // ignore: cast_nullable_to_non_nullable
 as String?,visibleWhenEquals: freezed == visibleWhenEquals ? _self.visibleWhenEquals : visibleWhenEquals // ignore: cast_nullable_to_non_nullable
-as String?,
+as dynamic,dateFormat: freezed == dateFormat ? _self.dateFormat : dateFormat // ignore: cast_nullable_to_non_nullable
+as String?,defaultValue: freezed == defaultValue ? _self.defaultValue : defaultValue // ignore: cast_nullable_to_non_nullable
+as dynamic,
   ));
 }
 

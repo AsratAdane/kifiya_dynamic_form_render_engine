@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FormSchema {
 
- String get title; List<FieldSchema> get fields;
+ String get title; List<FieldSchema> get fields; String get submitApiUrl; String get nextFormApiUrl;
 /// Create a copy of FormSchema
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $FormSchemaCopyWith<FormSchema> get copyWith => _$FormSchemaCopyWithImpl<FormSch
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSchema&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.fields, fields));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FormSchema&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other.fields, fields)&&(identical(other.submitApiUrl, submitApiUrl) || other.submitApiUrl == submitApiUrl)&&(identical(other.nextFormApiUrl, nextFormApiUrl) || other.nextFormApiUrl == nextFormApiUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(fields));
+int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(fields),submitApiUrl,nextFormApiUrl);
 
 @override
 String toString() {
-  return 'FormSchema(title: $title, fields: $fields)';
+  return 'FormSchema(title: $title, fields: $fields, submitApiUrl: $submitApiUrl, nextFormApiUrl: $nextFormApiUrl)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $FormSchemaCopyWith<$Res>  {
   factory $FormSchemaCopyWith(FormSchema value, $Res Function(FormSchema) _then) = _$FormSchemaCopyWithImpl;
 @useResult
 $Res call({
- String title, List<FieldSchema> fields
+ String title, List<FieldSchema> fields, String submitApiUrl, String nextFormApiUrl
 });
 
 
@@ -65,11 +65,13 @@ class _$FormSchemaCopyWithImpl<$Res>
 
 /// Create a copy of FormSchema
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? fields = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? title = null,Object? fields = null,Object? submitApiUrl = null,Object? nextFormApiUrl = null,}) {
   return _then(_self.copyWith(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,fields: null == fields ? _self.fields : fields // ignore: cast_nullable_to_non_nullable
-as List<FieldSchema>,
+as List<FieldSchema>,submitApiUrl: null == submitApiUrl ? _self.submitApiUrl : submitApiUrl // ignore: cast_nullable_to_non_nullable
+as String,nextFormApiUrl: null == nextFormApiUrl ? _self.nextFormApiUrl : nextFormApiUrl // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -154,10 +156,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  List<FieldSchema> fields)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  List<FieldSchema> fields,  String submitApiUrl,  String nextFormApiUrl)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _FormSchema() when $default != null:
-return $default(_that.title,_that.fields);case _:
+return $default(_that.title,_that.fields,_that.submitApiUrl,_that.nextFormApiUrl);case _:
   return orElse();
 
 }
@@ -175,10 +177,10 @@ return $default(_that.title,_that.fields);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  List<FieldSchema> fields)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  List<FieldSchema> fields,  String submitApiUrl,  String nextFormApiUrl)  $default,) {final _that = this;
 switch (_that) {
 case _FormSchema():
-return $default(_that.title,_that.fields);case _:
+return $default(_that.title,_that.fields,_that.submitApiUrl,_that.nextFormApiUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +197,10 @@ return $default(_that.title,_that.fields);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  List<FieldSchema> fields)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  List<FieldSchema> fields,  String submitApiUrl,  String nextFormApiUrl)?  $default,) {final _that = this;
 switch (_that) {
 case _FormSchema() when $default != null:
-return $default(_that.title,_that.fields);case _:
+return $default(_that.title,_that.fields,_that.submitApiUrl,_that.nextFormApiUrl);case _:
   return null;
 
 }
@@ -210,7 +212,7 @@ return $default(_that.title,_that.fields);case _:
 @JsonSerializable()
 
 class _FormSchema implements FormSchema {
-  const _FormSchema({required this.title, required final  List<FieldSchema> fields}): _fields = fields;
+  const _FormSchema({required this.title, required final  List<FieldSchema> fields, required this.submitApiUrl, required this.nextFormApiUrl}): _fields = fields;
   factory _FormSchema.fromJson(Map<String, dynamic> json) => _$FormSchemaFromJson(json);
 
 @override final  String title;
@@ -221,6 +223,8 @@ class _FormSchema implements FormSchema {
   return EqualUnmodifiableListView(_fields);
 }
 
+@override final  String submitApiUrl;
+@override final  String nextFormApiUrl;
 
 /// Create a copy of FormSchema
 /// with the given fields replaced by the non-null parameter values.
@@ -235,16 +239,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormSchema&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._fields, _fields));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FormSchema&&(identical(other.title, title) || other.title == title)&&const DeepCollectionEquality().equals(other._fields, _fields)&&(identical(other.submitApiUrl, submitApiUrl) || other.submitApiUrl == submitApiUrl)&&(identical(other.nextFormApiUrl, nextFormApiUrl) || other.nextFormApiUrl == nextFormApiUrl));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(_fields));
+int get hashCode => Object.hash(runtimeType,title,const DeepCollectionEquality().hash(_fields),submitApiUrl,nextFormApiUrl);
 
 @override
 String toString() {
-  return 'FormSchema(title: $title, fields: $fields)';
+  return 'FormSchema(title: $title, fields: $fields, submitApiUrl: $submitApiUrl, nextFormApiUrl: $nextFormApiUrl)';
 }
 
 
@@ -255,7 +259,7 @@ abstract mixin class _$FormSchemaCopyWith<$Res> implements $FormSchemaCopyWith<$
   factory _$FormSchemaCopyWith(_FormSchema value, $Res Function(_FormSchema) _then) = __$FormSchemaCopyWithImpl;
 @override @useResult
 $Res call({
- String title, List<FieldSchema> fields
+ String title, List<FieldSchema> fields, String submitApiUrl, String nextFormApiUrl
 });
 
 
@@ -272,11 +276,13 @@ class __$FormSchemaCopyWithImpl<$Res>
 
 /// Create a copy of FormSchema
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? fields = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? title = null,Object? fields = null,Object? submitApiUrl = null,Object? nextFormApiUrl = null,}) {
   return _then(_FormSchema(
 title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,fields: null == fields ? _self._fields : fields // ignore: cast_nullable_to_non_nullable
-as List<FieldSchema>,
+as List<FieldSchema>,submitApiUrl: null == submitApiUrl ? _self.submitApiUrl : submitApiUrl // ignore: cast_nullable_to_non_nullable
+as String,nextFormApiUrl: null == nextFormApiUrl ? _self.nextFormApiUrl : nextFormApiUrl // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
