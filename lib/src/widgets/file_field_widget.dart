@@ -5,8 +5,9 @@ import '../../kifiya_dynamic_form_render_engine.dart';
 class FileFieldWidget extends ConsumerWidget {
   final FieldSchema field;
   final String? error;
+  final String? btnColor;
 
-  const FileFieldWidget({super.key, required this.field, this.error});
+  const FileFieldWidget({super.key, required this.field, this.error,this.btnColor});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,10 +24,18 @@ class FileFieldWidget extends ConsumerWidget {
             Expanded(
               child: Text(
                 value ?? 'No file selected',
-                style: TextStyle(color: value != null ? Colors.black87 : Colors.black54),
+                style: TextStyle(
+                  color: value != null ? Colors.black87 : Colors.black54,
+                ),
               ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor:btnColor != null ? Color(int.parse(btnColor!)) : Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  )
+              ),
               onPressed: () {
                 controller.updateField(field.id, 'file_placeholder.txt', ref);
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -43,10 +52,12 @@ class FileFieldWidget extends ConsumerWidget {
         if (error != null)
           Padding(
             padding: const EdgeInsets.only(top: 4),
-            child: Text(error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            child: Text(
+              error!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
           ),
       ],
     );
   }
 }
-

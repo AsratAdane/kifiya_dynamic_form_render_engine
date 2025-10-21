@@ -26,8 +26,8 @@ class DynamicForm extends ConsumerWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
       children: [
-        Text(schema.title, style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(height: 24),
         ...visibleFields.map(
               (field) {
@@ -44,7 +44,7 @@ class DynamicForm extends ConsumerWidget {
               case FieldType.checkbox:
                 return CheckboxFieldWidget(field: field, error: error);
               case FieldType.fileUpload:
-                return FileFieldWidget(field: field, error: error);
+                return FileFieldWidget(field: field, error: error,btnColor: schema.buttonColor);
               case FieldType.signature:
                 return SignatureFieldWidget(field: field, error: error);
             }
@@ -54,6 +54,14 @@ class DynamicForm extends ConsumerWidget {
         SizedBox(
           width: double.infinity,
           child: ElevatedButton(
+            style:ButtonStyle(
+              backgroundColor: WidgetStateProperty.all<Color>(Color(int.parse(schema.buttonColor))),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            ) ,
             onPressed: () {
               final controller = ref.read(formControllerProvider.notifier);
               final errors = controller.validate(schema);

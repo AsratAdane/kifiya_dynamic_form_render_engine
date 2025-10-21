@@ -9,6 +9,7 @@ abstract class FormSchema with _$FormSchema {
     required String title,
     required List<FieldSchema> fields,
     required String submitApiUrl,
+    required String buttonColor,
     required String nextFormApiUrl,
   }) = _FormSchema;
 
