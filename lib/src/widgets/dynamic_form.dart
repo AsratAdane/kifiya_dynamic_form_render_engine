@@ -56,11 +56,12 @@ class DynamicForm extends ConsumerWidget {
           child: ElevatedButton(
             style:ButtonStyle(
               backgroundColor: WidgetStateProperty.all<Color>(Color(int.parse(schema.buttonColor))),
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
+              textStyle: WidgetStateProperty.all<TextStyle>(const TextStyle(color: Colors.white)),
             ) ,
             onPressed: () {
               final controller = ref.read(formControllerProvider.notifier);
@@ -74,7 +75,7 @@ class DynamicForm extends ConsumerWidget {
             },
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 14),
-              child: Text('Submit', style: TextStyle(fontSize: 16)),
+              child: Text('Submit', style: TextStyle(fontSize: 16,color: Colors.white)),
             ),
           ),
         ),
