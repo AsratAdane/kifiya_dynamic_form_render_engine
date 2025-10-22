@@ -34,7 +34,8 @@ class FileFieldWidget extends ConsumerWidget {
                   backgroundColor:btnColor != null ? Color(int.parse(btnColor!)) : Colors.black,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
-                  )
+                  ),
+                textStyle: TextStyle(color: Colors.white)
               ),
               onPressed: () {
                 controller.updateField(field.id, 'file_placeholder.txt', ref);
@@ -45,7 +46,7 @@ class FileFieldWidget extends ConsumerWidget {
                   ),
                 );
               },
-              child: const Text('Choose File'),
+              child: const Text('Choose File',style:  TextStyle(color: Colors.white),),
             ),
           ],
         ),
